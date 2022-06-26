@@ -3,8 +3,7 @@ class QuestionsController < ApplicationController
 
   def show
     @answer = @question.answers.build
-    @answers = @question.answers.order created_at: :desc
-    # Answer.where(question: @question).limit(2).order(created_at: :desc)
+    @pagy, @answers = pagy @question.answers.order(created_at: :desc)
   end
 
   def destroy
@@ -21,12 +20,12 @@ class QuestionsController < ApplicationController
       flash[:success] = "Question updated!"
       redirect_to questions_path
     else
-      render :edit
+      render :edit, status: :unprocessable_entity
     end
   end
 
   def index
-    @questions = Question.all
+    @pagy, @questions = pagy Question.order(created_at: :desc)
   end
 
   def new
@@ -39,7 +38,7 @@ class QuestionsController < ApplicationController
       flash[:success] = "Question created!"
       redirect_to questions_path
     else
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 

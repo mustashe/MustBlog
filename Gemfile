@@ -1,13 +1,17 @@
 source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby "3.0.3"
+ruby "3.1.1"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.0.3"
 
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
-gem "sprockets-rails"
+gem "propshaft", "~> 0.6"
+
+gem "turbo-rails", "~> 1.0"
+
+gem 'bcrypt', '~> 3.1.7'
 
 # Use sqlite3 as the database for Active Record
 gem "sqlite3", "~> 1.4"
@@ -27,7 +31,7 @@ gem "jbuilder"
 gem 'bootstrap', "~> 5.1.3"
 
 # Use Redis adapter to run Action Cable in production
-# gem "redis", "~> 4.0"
+gem "redis", "~> 4.0"
 
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"
@@ -44,12 +48,15 @@ gem "bootsnap", require: false
 # Use Sass to process CSS
 gem 'sass-rails', '>= 6'
 
+gem 'pagy', '>= 5.1'
+
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
+  gem 'faker', '>= 2'
 end
 
 group :development do

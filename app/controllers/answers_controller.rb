@@ -21,15 +21,15 @@ class AnswersController < ApplicationController
         flash[:success] = "Answer created!"
         redirect_to question_path(@question)
       else
-        @answers = @question.answers.order created_at: :desc
-        render 'questions/show'
+        @pagy, @answers = pagy @question.answers.order(created_at: :desc)
+        render 'questions/show', status: :unprocessable_entity
       end
     end
   
     def destroy
       @answer.destroy
       flash[:success] = "Answer deleted!"
-      redirect_to question_path(@question)
+      redirect_to question_path(@question), status: 303
     end
   
     private
