@@ -7,7 +7,7 @@ class UsersController < ApplicationController
     @user = User.new user_params
     if  @user.save 
         session[:user_id] = @user.id
-        flash[:success] = "Добро пожаловать на борт, #{@user.name}!"
+        flash[:success] = "Добро пожаловать на борт, #{current_user.name_or_email}!"
         redirect_to root_path 
     else
         render :new
