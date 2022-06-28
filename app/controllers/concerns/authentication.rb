@@ -2,7 +2,7 @@ module Authentication
     extend ActiveSupport::Concern 
 
     included do 
-        private
+    private
 
         def current_user 
             @current_use ||= User.find_by(id: session[:user_id]).decorate if session[:user_id].present?
@@ -12,6 +12,11 @@ module Authentication
             current_user.present?
         end
 
-            helper_method :current_user, :user_signed_in?
+        def sign_in(user)
+            session[:user_id] = user.id
         end
+
+
+        helper_method :current_user, :user_signed_in?
+    end
 end

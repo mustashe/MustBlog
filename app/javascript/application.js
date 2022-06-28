@@ -2,4 +2,7 @@
 import Rails from "@rails/ujs"
 import "@hotwired/turbo-rails"
 
+import '@popperjs/core'
+import 'bootstrap/js/dist/dropdown'
+
 Rails.start()
