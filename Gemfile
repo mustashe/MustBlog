@@ -21,16 +21,14 @@ gem "sqlite3", "~> 1.4"
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", "~> 5.0"
 
-# Bundle and transpile JavaScript [https://github.com/rails/jsbundling-rails]
-gem "jsbundling-rails"
-
-# Bundle and process CSS [https://github.com/rails/cssbundling-rails]
-gem "cssbundling-rails"
-
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem "jbuilder"
 
 gem 'bootstrap', "~> 5.1.3"
+
+gem 'sprockets-rails', "~> 3.4"
+gem 'cssbundling-rails', "~> 1.0"
+gem "jsbundling-rails", '~> 1.0'
 
 # Use Redis adapter to run Action Cable in production
 gem "redis", "~> 4.0"
@@ -51,6 +49,8 @@ gem "bootsnap", require: false
 gem 'sass-rails', '>= 6'
 
 gem 'pagy', '>= 5.1'
+
+gem 'rails-i18n', '~> 7'
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
