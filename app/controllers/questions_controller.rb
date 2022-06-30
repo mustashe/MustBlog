@@ -1,5 +1,6 @@
 class QuestionsController < ApplicationController
   before_action :set_question!, only: %i[show destroy edit update]
+  before_action :fetch_tags, only: %i[new edit]
 
   def show
     @answer = @question.answers.build
@@ -25,7 +26,8 @@ class QuestionsController < ApplicationController
   end
 
   def index
-    @pagy, @questions = pagy Question.order(created_at: :desc)
+    @pagy, @questions = pagy Question.includes(:user, :questions_tags, :tags).
+    order(created_at: :desc)
   end
 
   def new
@@ -45,10 +47,14 @@ class QuestionsController < ApplicationController
   private
 
   def question_params
-    params.require(:question).permit(:title, :body)
+    params.require(:question).permit(:title, :body, tag_ids: [])
   end
 
   def set_question!
     @question = Question.find params[:id]
+  end
+
+  def fetch_tags
+    @tags = Tag.all
   end
 end
