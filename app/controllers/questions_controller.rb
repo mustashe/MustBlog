@@ -26,8 +26,8 @@ class QuestionsController < ApplicationController
   end
 
   def index
-    @pagy, @questions = pagy Question.includes(:user, :questions_tags, :tags).
-    order(created_at: :desc)
+    @tags = Tag.where(id: params[:tag_ids]) if params[:tag_ids]
+    @pagy, @questions = pagy Question.all_by_tags(@tags)
   end
 
   def new
